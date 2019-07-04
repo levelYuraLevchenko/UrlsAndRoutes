@@ -10,7 +10,7 @@ namespace UrlsAndRoutes.Tests
     [TestClass]
     public class RouteTests
     {
-        private HttpContextBase CresteHttpContext(string targetUrl = null, string httpMethod = "GET")
+        private HttpContextBase CreateHttpContext(string targetUrl = null, string httpMethod = "GET")
         {
             // Создать имитированный запрос
             Mock<HttpRequestBase> mockRequest = new Mock<HttpRequestBase>();
@@ -37,7 +37,7 @@ namespace UrlsAndRoutes.Tests
             RouteConfig.RegisterRoutes(routes);
 
             // Действие - обработка моршрута
-            RouteData result = routes.GetRouteData(CresteHttpContext(url, httpMethod));
+            RouteData result = routes.GetRouteData(CreateHttpContext(url, httpMethod));
 
             // Утверждение
             Assert.IsNotNull(result);
@@ -66,6 +66,33 @@ namespace UrlsAndRoutes.Tests
                 }
             }
             return result;
+        }
+
+        private void TestRouteFile(string url)
+        {
+            // Организация
+            RouteCollection routes = new RouteCollection();
+            RouteConfig.RegisterRoutes(routes);
+
+            // Действие - обработка маршрута
+            RouteData result = routes.GetRouteData(CreateHttpContext(url));
+
+            // Утверждение
+            Assert.IsTrue(result == null || result.Route == null);
+        }
+
+        [TestMethod]
+        public void TestIncomingRoutes()
+        {
+            // Проверка URL, который мы надеемся получить
+            TestRouteMatch("~/Admin/Index", "Admin", "Index");
+
+            // Проверка значения, получаемые из сегмента
+            TestRouteMatch("~/One/Two", "One", "Two");
+
+            // Удостовериться, что слишком много или слишком мало сегментов не приводят к совпадению
+            TestRouteFile("~/Admin/Index/Segment");
+            TestRouteFile("~/Admin");
         }
     }
 }
