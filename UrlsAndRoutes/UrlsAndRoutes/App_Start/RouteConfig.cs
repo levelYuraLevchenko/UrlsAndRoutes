@@ -11,7 +11,7 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapRoute("MyRoute", "{controller}/{action}");
+            routes.MapRoute("MyRoute", "{controller}/{action}", new { controller = "Home", action = "Index" });
 
 
 

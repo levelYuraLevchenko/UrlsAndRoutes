@@ -84,15 +84,10 @@ namespace UrlsAndRoutes.Tests
         [TestMethod]
         public void TestIncomingRoutes()
         {
-            // Проверка URL, который мы надеемся получить
-            TestRouteMatch("~/Admin/Index", "Admin", "Index");
-
-            // Проверка значения, получаемые из сегмента
-            TestRouteMatch("~/One/Two", "One", "Two");
-
-            // Удостовериться, что слишком много или слишком мало сегментов не приводят к совпадению
-            TestRouteFile("~/Admin/Index/Segment");
-            TestRouteFile("~/Admin");
+            TestRouteMatch("~/", "Home", "Index");
+            TestRouteMatch("~/Customer", "Customer", "Index");
+            TestRouteMatch("~/Customer/List", "Customer", "List");
+            TestRouteFile("~/Customer/List/All");
         }
     }
 }
