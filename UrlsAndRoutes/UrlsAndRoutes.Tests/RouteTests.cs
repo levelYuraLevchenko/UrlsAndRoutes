@@ -84,10 +84,11 @@ namespace UrlsAndRoutes.Tests
         [TestMethod]
         public void TestIncomingRoutes()
         {
-            TestRouteMatch("~/", "Home", "Index");
-            TestRouteMatch("~/Customer", "Customer", "Index");
-            TestRouteMatch("~/Customer/List", "Customer", "List");
-            TestRouteFile("~/Customer/List/All");
+            TestRouteMatch("~/", "Home", "Index", new { id = "DefaultId" });
+            TestRouteMatch("~/Customer", "Customer", "Index", new { id = "DefaultId" });
+            TestRouteMatch("~/Customer/List", "Customer", "List", new { id = "DefaultId" });
+            TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "DefaultId" });
+            TestRouteFile("~/Customer/List/All/Delete");
         }
     }
 }
