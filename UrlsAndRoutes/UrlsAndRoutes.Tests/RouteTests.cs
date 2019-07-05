@@ -87,7 +87,7 @@ namespace UrlsAndRoutes.Tests
             TestRouteMatch("~/", "Home", "Index", new { id = "DefaultId" });
             TestRouteMatch("~/Customer", "Customer", "Index", new { id = "DefaultId" });
             TestRouteMatch("~/Customer/List", "Customer", "List", new { id = "DefaultId" });
-            TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "DefaultId" });
+            TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "All" });
             TestRouteFile("~/Customer/List/All/Delete");
         }
     }
