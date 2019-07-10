@@ -88,7 +88,8 @@ namespace UrlsAndRoutes.Tests
             TestRouteMatch("~/Customer", "Customer", "Index");
             TestRouteMatch("~/Customer/List", "Customer", "List");
             TestRouteMatch("~/Customer/List/All", "Customer", "List", new { id = "All" });
-            TestRouteFile("~/Customer/List/All/Delete");
+            TestRouteMatch("~/Customer/List/All/Delete", "Customer", "List", new { id = "All", catchall = "Delete" });
+            TestRouteMatch("~/Customer/List/All/Delete/Perm", "Customer", "List", new { id = "All", catchall = "Delete/Perm" });
         }
     }
 }
