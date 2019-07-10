@@ -11,12 +11,12 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            Route myRoute = routes.MapRoute("AddControllerRoute", "Home/{action}/{id}/{*catchall}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new[] { "UrlsAndRoutes.AdditionalControllers" });
-            myRoute.DataTokens["UseNamespaceFallback"] = false;
             routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new {
+                    controller = "^H.*", action = "^Index$|^About$",
+                    httpMethod = new HttpMethodConstraint("GET")
+                },
                 new[] { "UrlsAndRoutes.Controllers" });       
         }
     }
