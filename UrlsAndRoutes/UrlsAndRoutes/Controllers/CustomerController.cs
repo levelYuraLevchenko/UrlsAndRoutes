@@ -13,6 +13,10 @@ namespace UrlsAndRoutes.Controllers
         }
 
         [Route("Users/Add/{user}/{id}")]
+        public string Create(string user, int id)
+        {
+            return string.Format("User: {0}, ID: {1}", user, id);
+        }
 
         public ActionResult List()
         {
