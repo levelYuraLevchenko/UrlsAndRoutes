@@ -12,5 +12,9 @@
 <body>
     <div>The controller is: @ViewBag.Controller</div>
     <div>The action is: @ViewBag.Action</div>
+    <div>
+        This is URL:
+        @Url.Action("Index", "Home", new { id = "MyId" })
+    </div>
 </body>
 </html>
