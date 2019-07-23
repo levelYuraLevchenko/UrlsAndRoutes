@@ -33,7 +33,13 @@ namespace UrlsAndRoutes.Infrastructure
 
         public override VirtualPathData GetVirtualPath(RequestContext requestContext, RouteValueDictionary values)
         {
-            return null;
+            VirtualPathData result = null;
+
+            if(values.ContainsKey("legacyURL") && urls.Contains((string)values["legacyURL"], StringComparer.OrdinalIgnoreCase))
+            {
+                result = new VirtualPathData(this, new UrlHelper(requestContext).Content((string)values["legacyURL"]).Substring(1));
+            }
+            return result;
         }
     }
 }
