@@ -21,9 +21,11 @@ namespace UrlsAndRoutes
                 "~/articles/Windows_3.1_Overview.html",
                 "~/old/.NET_1.0_Class_Library"));
 
-            routes.MapRoute("MyRoute", "{controller}/{action}");
+            routes.MapRoute("MyRoute", "{controller}/{action}", null,
+                new[] { "UrlsAndRoutes.Controllers" });
 
-            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
+            routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" },
+                new[] { "UrlsAndRoutes.Controllers" });
         }
     }
 }
